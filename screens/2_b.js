@@ -27,7 +27,7 @@ export default function App() {
                         style={{
                             width: '40px',
                             height: '40px',
-                            marginRight:'20px'
+                            marginRight: '20px'
                         }} ></Image>
                     <Text style={{ fontSize: '25px', fontWeight: 'bold' }}>Thêm hình ảnh</Text>
                 </TouchableOpacity>
@@ -54,14 +54,14 @@ const styles = StyleSheet.create({
     star: {
         flexDirection: 'row',
     },
-    button:{
-        margin:'10px',
-        padding:'20px',
-        flexDirection:'row',
-        justifyContent:'center',
-        alignContent:'center',
-        borderWidth:1,
-        borderRadius:5,
-        borderColor:'blue',
+    button: {
+        margin: '10px',
+        padding: '20px',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignContent: 'center',
+        borderWidth: 1,
+        borderRadius: 5,
+        borderColor: 'blue',
     }
 });

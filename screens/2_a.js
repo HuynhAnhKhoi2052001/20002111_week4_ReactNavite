@@ -1,23 +1,55 @@
 import { StatusBar } from 'expo-status-bar';
-import {View, TouchableOpacity, Text, Image, TextInput, StyleSheet, Button} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-export default function App() {
+import { View, TouchableOpacity, Text, Image, TextInput, StyleSheet} from 'react-native';
+import React, { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
+export default function page2a() {
+  const navigation = useNavigation();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin =() =>{
+    const foundUser = users.find((user)=>{
+      return username == user.username && password == user.password;
+    });
+    if(foundUser){
+      console.log(username, password);
+      window.alert('Login success');
+     navigation.navigate('screen2');
+    }
+    else{
+      window.alert('Login failed');
+    }
+  };
+
+const users =[
+  {
+    username: 'admin',
+    password: 'admin'
+  },
+  {
+    username: 'admin1',
+    password: 'admin1'
+  }
+]
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <View style={styles.styles1}>
 
         <Text style={[styles.customText, { paddingLeft: 20 }]}  >  LOGIN</Text>
       </View>
 
       <View style={styles.styles2}>
-
-
-
-        <TextInput placeholder='Email' style={styles.input} ></TextInput>
-        <TextInput placeholder='Password ' style={styles.input} ></TextInput>
-
-
+        <TextInput placeholder='Email' 
+        style={styles.input}
+        onChangeText={(text)=> setUsername(text)}
+        value={username} 
+        ></TextInput>
+        <TextInput placeholder='Password' 
+        style={styles.input} 
+        secureTextEntry={true}
+        onChangeText={(text)=> setPassword(text)}
+        value={password}
+        ></TextInput>
         <Image
           source={require('../img/avatar_user 1.png')}
           style={[{
@@ -40,40 +72,14 @@ export default function App() {
             position: 'absolute',
             marginTop: 95,
             marginRight: 280
-
-
           }]}
         />
-
-        <Image
-          source={require('../img/eye 1.png')}
-          style={[{
-            width: 30,
-            height: 30,
-            flexShrink: 0,
-            position: 'absolute',
-            marginTop: 95,
-            marginLeft: 250
-
-
-
-          }]}
-        />
-
-
       </View>
-      <View style={styles.styles3}>
 
-        <TouchableOpacity style={styles.customButton}>
+      <View style={styles.styles3}>
+        <TouchableOpacity style={styles.customButton} onPress={handleLogin}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>
-
-
-
-
-
-
-
       </View>
 
       <View style={styles.styles4}>
@@ -84,15 +90,9 @@ export default function App() {
       <View style={styles.styles5}>
 
       </View>
-
-
-
-
-
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
